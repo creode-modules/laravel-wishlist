@@ -1,0 +1,35 @@
+{
+    "name": "nwidart/awdisproductwishlist",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\AwdisProductWishlist\\": "",
+            "Modules\\AwdisProductWishlist\\App\\": "app/",
+            "Modules\\AwdisProductWishlist\\Database\\Factories\\": "database/factories/",
+            "Modules\\AwdisProductWishlist\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\AwdisProductWishlist\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "lorisleiva/laravel-actions": "^2.7",
+        "barryvdh/laravel-dompdf": "^2.0"
+    }
+}

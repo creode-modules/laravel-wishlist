@@ -1,0 +1,12 @@
+{
+    "name": "AwdisProductWishlist",
+    "alias": "awdisproductwishlist",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\AwdisProductWishlist\\app\\Providers\\AwdisProductWishlistServiceProvider",
+        "Modules\\AwdisProductWishlist\\app\\Providers\\EventServiceProvider"
+    ],
+    "files": []
+}
