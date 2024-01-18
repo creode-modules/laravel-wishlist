@@ -1,10 +1,8 @@
 <?php
 
+use Creode\LaravelWishlist\app\Http\Controllers\LaravelWishlistController;
+use Creode\LaravelWishlist\app\Http\Controllers\LaravelWishlistRegistrationController;
 use Illuminate\Support\Facades\Route;
-
-use Modules\AwdisProductWishlist\app\Http\Controllers\AwdisProductWishlistController;
-use \Modules\AwdisProductWishlist\app\Http\Controllers\AwdisProductWishlistRegistrationController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -17,21 +15,20 @@ use \Modules\AwdisProductWishlist\app\Http\Controllers\AwdisProductWishlistRegis
 |
 */
 
-Route::prefix('wishlist')->group(function(){
+Route::prefix('wishlist')->group(function () {
 
-    Route::get('/', [AwdisProductWishlistController::class, 'showWishlist'])->name('wishlist.show');
-    Route::post('add', [AwdisProductWishlistController::class, 'addToWishlist'])->name('wishlist.add');
+    Route::get('/', [LaravelWishlistController::class, 'showWishlist'])->name('wishlist.show');
+    Route::post('add', [LaravelWishlistController::class, 'addToWishlist'])->name('wishlist.add');
 
-    Route::middleware('auth')->group(function(){
-        Route::get('my-wishlists', [AwdisProductWishlistController::class, 'myWishlists'])->name('wishlist.previous');
+    Route::middleware('auth')->group(function () {
+        Route::get('my-wishlists', [LaravelWishlistController::class, 'myWishlists'])->name('wishlist.previous');
     });
 
-    Route::middleware('wishlist')->group(function(){
-        Route::delete('remove/{id}', [AwdisProductWishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
-        Route::post('register', [AwdisProductWishlistRegistrationController::class, 'create'])->name('wishlist.register.form');
-        Route::post('submit', [AwdisProductWishlistRegistrationController::class, 'store'])->name('wishlist.download.submit');
-        Route::post('pdf-download', [AwdisProductWishlistController::class, 'pdfDownload'])->name('wishlist.download.pdf');
-        Route::get('thank-you', [AwdisProductWishlistController::class, 'thankYou'])->name('wishlist.thankyou');
+    Route::middleware('wishlist')->group(function () {
+        Route::delete('remove/{id}', [LaravelWishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
+        Route::post('register', [LaravelWishlistRegistrationController::class, 'create'])->name('wishlist.register.form');
+        Route::post('submit', [LaravelWishlistRegistrationController::class, 'store'])->name('wishlist.download.submit');
+        Route::post('pdf-download', [LaravelWishlistController::class, 'pdfDownload'])->name('wishlist.download.pdf');
+        Route::get('thank-you', [LaravelWishlistController::class, 'thankYou'])->name('wishlist.thankyou');
     });
-
 });

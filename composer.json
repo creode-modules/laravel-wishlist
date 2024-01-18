@@ -1,35 +1,43 @@
 {
-    "name": "nwidart/awdisproductwishlist",
-    "description": "",
+    "name": "creode/laravel-wishlist",
+    "description": "Wishlist functionality for Laravel. Allows users to add products to a wishlist and store the wishlist in the database.",
+    "keywords": [
+        "creode",
+        "laravel",
+        "laravel-wishlist"
+    ],
+    "homepage": "https://github.com/creode-modules/laravel-wishlist",
+    "license": "MIT",
     "authors": [
         {
-            "name": "Nicolas Widart",
-            "email": "n.widart@gmail.com"
+            "name": "Creode",
+            "email": "contact@creode.co.uk",
+            "role": "Developer"
         }
     ],
-    "extra": {
-        "laravel": {
-            "providers": [],
-            "aliases": {
-
-            }
-        }
+    "require": {
+        "php": "^8.1",
+        "barryvdh/laravel-dompdf": "^2.0"
     },
     "autoload": {
         "psr-4": {
-            "Modules\\AwdisProductWishlist\\": "",
-            "Modules\\AwdisProductWishlist\\App\\": "app/",
-            "Modules\\AwdisProductWishlist\\Database\\Factories\\": "database/factories/",
-            "Modules\\AwdisProductWishlist\\Database\\Seeders\\": "database/seeders/"
+            "Creode\\LaravelWishlist\\": "src/"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Modules\\AwdisProductWishlist\\Tests\\": "tests/"
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
         }
     },
-    "require": {
-        "lorisleiva/laravel-actions": "^2.7",
-        "barryvdh/laravel-dompdf": "^2.0"
-    }
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Creode\\LaravelWishlist\\LaravelWishlistServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
