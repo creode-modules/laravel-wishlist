@@ -16,7 +16,6 @@ class LaravelWishlistRegistrationController extends Controller
 {
     public function __construct(protected WishlistHelper $wishlistHelper)
     {
-
     }
     /**
      * Show the form for creating a new resource.
@@ -39,7 +38,7 @@ class LaravelWishlistRegistrationController extends Controller
         $userData = $userRegistrationFormRequest->validated();
 
         // Create a new user if register was ticked
-        if($userRegistrationFormRequest->has('register')){
+        if ($userRegistrationFormRequest->has('register')) {
             CreateUser::run($userData);
 
             // Details sent to HubSpot
@@ -49,7 +48,7 @@ class LaravelWishlistRegistrationController extends Controller
         $wishlist = CreateWishlist::run($userData);
 
         // Returning customer
-        if($this->wishlistHelper->isReturningUser($userData['email'])){
+        if ($this->wishlistHelper->isReturningUser($userData['email'])) {
             // Send email to AWDis
             $wishlist->load('wishlistItems');
             Mail::to(config('laravel-wishlist.recipient.email'))

@@ -8,10 +8,9 @@ use Creode\LaravelWishlist\app\Contracts\WishlistStorageInterface;
 use Creode\LaravelWishlist\app\Models\Wishlist;
 use Creode\LaravelWishlist\Services\SessionStorageService;
 use Creode\LaravelWishlist\Services\WishlistPdfDownloadService;
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
-class LaravelWishlistServiceProvider extends PackageServiceProvider
+class LaravelWishlistServiceProvider extends ServiceProvider
 {
 
     public function boot()
@@ -20,6 +19,20 @@ class LaravelWishlistServiceProvider extends PackageServiceProvider
 
         $this->app->bind(WishlistStorageInterface::class, SessionStorageService::class);
         $this->app->bind(WishlistDownloadInterface::class, WishlistPdfDownloadService::class);
+
+        $this->publishes([
+            __DIR__.'/../config/laravel-wishlist.php' => config_path('laravel-wishlist.php'),
+        ]);
+
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-wishlist');
+
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/wishlist'),
+        ]);
     }
 
     private function registerRelationships(): void
@@ -29,23 +42,5 @@ class LaravelWishlistServiceProvider extends PackageServiceProvider
         });
     }
 
-    public function configurePackage(Package $package): void
-    {
-        $package
-            ->name('laravel-wishlist')
-            ->hasViews('laravel-wishlist')
-            ->hasRoutes('web')
-            ->hasConfigFile('laravel-wishlist')
-            ->hasMigrations(
-                [
-                    '2023_11_14_160232_create_sessions_table',
-                    '2023_11_15_153847_add_business_name_to_users_table',
-                    '2023_11_16_165036_create_wishlist_items_table',
-                    '2023_11_16_165523_create_wishlists_table',
-                    '2023_11_17_090746_create_wishlist_wishlist_items_table',
-                    '2023_12_14_144050_make_image_field_nullable_on_wishlist_items_table',
-                ]
-            )
-            ->runsMigrations();
-    }
+
 }

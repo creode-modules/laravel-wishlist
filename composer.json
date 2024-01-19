@@ -1,8 +1,8 @@
 {
     "name": "creode/laravel-wishlist",
+    "type": "package",
     "description": "Wishlist functionality for Laravel. Allows users to add products to a wishlist and store the wishlist in the database.",
     "keywords": [
-        "creode",
         "laravel",
         "laravel-wishlist"
     ],
@@ -17,7 +17,8 @@
     ],
     "require": {
         "php": "^8.1",
-        "barryvdh/laravel-dompdf": "^2.0"
+        "barryvdh/laravel-dompdf": "^2.0",
+        "lorisleiva/laravel-actions": "^2.7"
     },
     "autoload": {
         "psr-4": {
@@ -25,11 +26,7 @@
         }
     },
     "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "pestphp/pest-plugin": true,
-            "phpstan/extension-installer": true
-        }
+        "sort-packages": true
     },
     "extra": {
         "laravel": {

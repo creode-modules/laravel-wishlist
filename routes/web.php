@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::prefix('wishlist')->group(function () {
 
     Route::get('/', [LaravelWishlistController::class, 'showWishlist'])->name('wishlist.show');

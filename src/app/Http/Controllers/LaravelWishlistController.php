@@ -16,7 +16,8 @@ class LaravelWishlistController extends Controller
         protected WishlistStorageInterface $wishlistStorageService,
         protected WishlistPdfDownloadService $wishlistPdfDownloadService
     )
-    {}
+    {
+    }
 
     public function showWishlist()
     {
@@ -32,10 +33,10 @@ class LaravelWishlistController extends Controller
 
     public function addToWishlist(WishlistItemRequest $wishlistItemRequest)
     {
-        try{
+        try {
             AddItemToWishlist::run($wishlistItemRequest->validated());
             return back()->with('message', 'Product added to wishlist. <a href="'.route('wishlist.show').'">View wishlist</a>');
-        }catch(ProductAlreadyInWishListException $e){
+        } catch (ProductAlreadyInWishListException $e) {
             return back()->with('message', $e->getMessage());
         }
     }
@@ -57,5 +58,4 @@ class LaravelWishlistController extends Controller
     {
         return view('laravel-wishlist::thankyou');
     }
-
 }
