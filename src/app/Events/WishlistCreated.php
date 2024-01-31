@@ -5,7 +5,7 @@ namespace Creode\LaravelWishlist\app\Events;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class WishlistUserRegistered
+class WishlistCreated
 {
     use SerializesModels, Dispatchable;
 

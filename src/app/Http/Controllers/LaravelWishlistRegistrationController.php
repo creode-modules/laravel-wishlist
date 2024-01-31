@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Mail;
 use Creode\LaravelWishlist\Actions\CreateUser;
 use Creode\LaravelWishlist\Actions\CreateWishlist;
 use Creode\LaravelWishlist\app\Emails\SendWishlist;
-use Creode\LaravelWishlist\app\Events\WishlistUserRegistered;
+use Creode\LaravelWishlist\app\Events\WishlistCreated;
 use Creode\LaravelWishlist\app\Helpers\WishlistHelper;
 use Creode\LaravelWishlist\app\Http\Requests\UserRegistrationFormRequest;
 use Creode\LaravelWishlist\app\Http\Requests\UserTypeRequest;
@@ -42,7 +42,7 @@ class LaravelWishlistRegistrationController extends Controller
             CreateUser::run($userData);
 
             // Details sent to HubSpot
-            WishlistUserRegistered::dispatch($userData);
+            WishlistCreated::dispatch($userData);
         }
 
         $wishlist = CreateWishlist::run($userData);
